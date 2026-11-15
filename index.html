@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CHIP-8 WASM Emulator</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: monospace;
+    }
+    canvas {
+      border: 2px solid #555;
+      background-color: #000;
+      /* Keeps pixels sharp instead of blurry when scaled up */
+      image-rendering: pixelated; 
+    }
+  </style>
+</head>
+<body>
+  <h1>CHIP-8 Emulator</h1>
+  <!-- Original CHIP-8 is 64x32. Scaling by 10x gives 640x320 -->
+  <canvas id="screen" width="640" height="320"></canvas>
+
+  <!-- Notice type="module" — this unlocks native ES6 imports in the browser! -->
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
