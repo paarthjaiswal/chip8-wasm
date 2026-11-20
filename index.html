@@ -1,34 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>CHIP-8 WASM Emulator</title>
   <style>
     body {
-      background-color: #1a1a1a;
-      color: #ffffff;
+      background-color: #141414;
+      color: #f0f0f0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
       font-family: monospace;
+      gap: 12px;
     }
     canvas {
-      border: 2px solid #555;
+      border: 2px solid #444;
       background-color: #000;
-      /* Keeps pixels sharp instead of blurry when scaled up */
-      image-rendering: pixelated; 
+      image-rendering: pixelated;
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    select, button {
+      background: #222;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 6px 10px;
+      font-family: monospace;
+      cursor: pointer;
+    }
+    .hint {
+      color: #999;
+      font-size: 12px;
+      max-width: 640px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <h1>CHIP-8 Emulator</h1>
-  <!-- Original CHIP-8 is 64x32. Scaling by 10x gives 640x320 -->
+  <h1>CHIP-8 Emulator (Rust + WASM)</h1>
+
+  <div class="controls">
+    <label for="rom-select">ROM:</label>
+    <select id="rom-select">
+      <option value="./roms/2-ibm-logo.ch8">2-ibm-logo.ch8</option>
+      <option value="./roms/3-corax+.ch8">3-corax+.ch8</option>
+      <option value="./roms/4-flags.ch8">4-flags.ch8</option>
+      <option value="./roms/6-keypad.ch8">6-keypad.ch8</option>
+    </select>
+    <button id="reload-btn" type="button">Load / Reset</button>
+  </div>
+
   <canvas id="screen" width="640" height="320"></canvas>
 
-  <!-- Notice type="module" — this unlocks native ES6 imports in the browser! -->
+  <div class="hint">
+    CHIP-8 Keypad mapping: 1 2 3 4 -> 1 2 3 C | Q W E R -> 4 5 6 D | A S D F -> 7 8 9 E | Z X C V -> A 0 B F
+  </div>
+
   <script type="module" src="./main.js"></script>
 </body>
 </html>
